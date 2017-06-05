@@ -15,7 +15,7 @@ import sys
 
 from pathlib import PurePath
 
-from .loggers import LOGGING
+# from .loggers import LOGGING
 
 APP_LABEL = 'bcpp_clinic_validations'
 
@@ -172,4 +172,4 @@ DEVICE_ID = '15'
 SERVER_DEVICE_ID_LIST = ['99']
 # MIDDLEMAN_DEVICE_ID_LIST = []
 
-LOGGING = LOGGING
+# LOGGING = LOGGING
