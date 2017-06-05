@@ -1,2 +1,2 @@
 # clinic-form-validation
-Bcpp Clinic forms, validations and tests
+BCPP Clinic Form Validation module
