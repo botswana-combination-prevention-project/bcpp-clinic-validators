@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from edc_constants.constants import YES
+from edc_constants.constants import YES, NO
 
 from ..validations import ClinicSubjectLocator
 
@@ -142,3 +142,11 @@ class TestClinicSubjectLocator(TestCase):
         clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
         self.assertRaises(ValidationError, clinicsubjectlocator.clean)
 
+    def test_may_follow_up(self):
+        """If participant has not given permission for follow-up, do not give
+        follow-up details
+        """
+        cleaned_data = {'may_follow_up': NO,
+                        'may_sms_follow_up': None}
+        clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
+        self.assertTrue(clinicsubjectlocator.clean())
