@@ -14,7 +14,8 @@ class TestClinicSubjectLocator(TestCase):
     def test_home_visit_permission1(self):
         """Test if home_visit_permission is Yes physical_address is required.
         """
-        cleaned_data = {'home_visit_permission': YES, 'physical_address': "Village"}
+        cleaned_data = {'home_visit_permission': YES,
+                        'physical_address': "Village"}
         clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
         self.assertTrue(clinicsubjectlocator.clean())
 
@@ -124,16 +125,20 @@ class TestClinicSubjectLocator(TestCase):
         self.assertRaises(ValidationError, clinicsubjectlocator.clean)
 
     def test_may_contact_someone_address1(self):
-        """Test if may_contact_someone is Yes contact_physical_address is required.
+        """Test if may_contact_someone is Yes contact_physical_address is
+        required.
         """
-        cleaned_data = {'may_contact_someone': YES, 'contact_physical_address': "Village"}
+        cleaned_data = {'may_contact_someone': YES,
+                        'contact_physical_address': "Village"}
         clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
         self.assertTrue(clinicsubjectlocator.clean())
 
     def test_may_contact_someone_address2(self):
-        """Test if may_contact_someone is Yes contact_physical_address is required.
+        """Test if may_contact_someone is Yes contact_physical_address is
+        required.
         """
-        cleaned_data = {'may_contact_someone': YES, 'contact_physical_address': None}
+        cleaned_data = {'may_contact_someone': YES,
+                        'contact_physical_address': None}
         clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
         self.assertRaises(ValidationError, clinicsubjectlocator.clean)
 
