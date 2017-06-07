@@ -1,3 +1,4 @@
+from django import forms
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
@@ -131,7 +132,10 @@ class TestClinicSubjectLocatorFormValidator(TestCase):
             'may_sms_follow_up': None}
         form_validator = ClinicSubjectLocatorFormValidator(
             cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+        try:
+            form_validator.clean()
+        except forms.ValidationError as e:
+            self.fail(f'ValidationError unexpectedly raised. Got {e}')
 
     def test_may_sms_follow_up_not_required_error(self):
         options = {
@@ -146,7 +150,10 @@ class TestClinicSubjectLocatorFormValidator(TestCase):
             'has_alt_contact': None}
         form_validator = ClinicSubjectLocatorFormValidator(
             cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+        try:
+            form_validator.clean()
+        except forms.ValidationError as e:
+            self.fail(f'ValidationError unexpectedly raised. Got {e}')
 
     def test_next_of_kin_not_required_error(self):
         options = {
