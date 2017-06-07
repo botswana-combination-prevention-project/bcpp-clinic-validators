@@ -16,12 +16,12 @@ class TestViralLoadTracking(TestCase):
         """Test if is_drawn is Yes clinician_initials is required.
         """
         cleaned_data = {'is_drawn': YES, 'clinician_initials': None}
-        viralloadtracking = ViralLoadTracking(cleaned_data=cleaned_data)
-        self.assertRaises(ValidationError, viralloadtracking.clean)
+        form_validator = ViralLoadTracking(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
 
     def test_is_drawn_datetime(self):
         """Test if is_drawn is Yes drawn_datetime is required.
         """
         cleaned_data = {'is_drawn': YES, 'drawn_datetime': None}
-        viralloadtracking = ViralLoadTracking(cleaned_data=cleaned_data)
-        self.assertRaises(ValidationError, viralloadtracking.clean)
+        form_validator = ViralLoadTracking(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)

@@ -15,12 +15,12 @@ class TestQuestionnaire(TestCase):
         """Test if knows_last_cd4 is Yes cd4_count is required.
         """
         cleaned_data = {'knows_last_cd4': YES, 'cd4_count': 390}
-        questionnaire = Questionnaire(cleaned_data=cleaned_data)
-        self.assertTrue(questionnaire.clean())
+        form_validator = Questionnaire(cleaned_data=cleaned_data)
+        self.assertTrue(form_validator.clean())
 
     def test_knows_last_cd4_n_cd4_count2(self):
         """Test if knows_last_cd4 is Yes cd4_count is required.
         """
         cleaned_data = {'knows_last_cd4': YES, 'cd4_count': None}
-        questionnaire = Questionnaire(cleaned_data=cleaned_data)
-        self.assertRaises(ValidationError, questionnaire.clean)
+        form_validator = Questionnaire(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
