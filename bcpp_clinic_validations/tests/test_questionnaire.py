@@ -3,7 +3,7 @@ from django.test import TestCase
 
 from edc_constants.constants import YES, NO
 
-from ..validators import QuestionnaireFormValidator
+from ..form_validators import QuestionnaireFormValidator
 
 
 class TestQuestionnaireFormValidator(TestCase):

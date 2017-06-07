@@ -4,7 +4,7 @@ from django.test import TestCase
 from edc_base.utils import get_utcnow
 from edc_constants.constants import YES, NO
 
-from ..validators import ViralLoadTrackingFormValidator
+from ..form_validators import ViralLoadTrackingFormValidator
 
 
 class TestViralLoadTrackingFormValidator(TestCase):
