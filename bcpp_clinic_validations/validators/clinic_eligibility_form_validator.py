@@ -1,8 +1,8 @@
 from edc_base.modelform_validators import FormValidator
-from edc_constants.constants import YES, NO, UNKNOWN
+from edc_constants.constants import YES
 
 
-class ClinicEligibilityForm(FormValidator):
+class ClinicEligibilityFormValidator(FormValidator):
 
     def __init__(self, cleaned_data=None):
         self.cleaned_data = cleaned_data
@@ -12,46 +12,36 @@ class ClinicEligibilityForm(FormValidator):
             YES,
             field='has_identity',
             field_required='identity',
-            cleaned_data=self.cleaned_data)
-
-        return self.cleaned_data
+        )
 
         self.required_if(
             YES,
             field='clinic_household_member',
             field_required='first_name',
-            cleaned_data=self.cleaned_data)
-
-        return self.cleaned_data
+        )
 
         self.required_if(
             YES,
             field='clinic_household_member',
             field_required='initials',
-            cleaned_data=self.cleaned_data)
-
-        return self.cleaned_data
+        )
 
         self.required_if(
             YES,
             field='clinic_household_member',
             field_required='report_datetime',
-            cleaned_data=self.cleaned_data)
-
-        return self.cleaned_data
+        )
 
         self.required_if(
             YES,
             field='clinic_household_member',
             field_required='age_in_years',
-            cleaned_data=self.cleaned_data)
-
-        return self.cleaned_data
+        )
 
         self.required_if(
             YES,
             field='clinic_household_member',
             field_required='gender',
-            cleaned_data=self.cleaned_data)
+        )
 
         return self.cleaned_data

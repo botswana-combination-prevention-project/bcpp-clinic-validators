@@ -1,8 +1,8 @@
 from edc_base.modelform_validators import FormValidator
-from edc_constants.constants import YES, NO, UNKNOWN
+from edc_constants.constants import YES
 
 
-class ViralLoadTracking(FormValidator):
+class ViralLoadTrackingFormValidator(FormValidator):
 
     def __init__(self, cleaned_data=None):
         self.cleaned_data = cleaned_data
@@ -11,12 +11,10 @@ class ViralLoadTracking(FormValidator):
         self.required_if(
             YES,
             field='is_drawn',
-            field_required='clinician_initials',
-            cleaned_data=self.cleaned_data)
+            field_required='clinician_initials')
 
         self.required_if(
             YES,
             field='is_drawn',
-            field_required='drawn_datetime',
-            cleaned_data=self.cleaned_data)
+            field_required='drawn_datetime')
         return self.cleaned_data

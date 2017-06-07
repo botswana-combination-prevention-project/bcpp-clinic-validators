@@ -3,7 +3,7 @@
 # 
 # from edc_constants.constants import YES
 # 
-# from ..validations import DailyLog
+# from ..validators import DailyLog
 # 
 # 
 # class TestRefusedMember(TestCase):
