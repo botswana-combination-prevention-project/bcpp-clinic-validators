@@ -58,4 +58,9 @@ class ClinicSubjectLocator(RequiredFieldValidationMixin):
             field='may_follow_up',
             field_required='may_sms_follow_up',
             cleaned_data=self.cleaned_data)
+        self.not_required_if(
+            NO,
+            field='next_of_kin',
+            field_required='has_alt_contact',
+            cleaned_data=self.cleaned_data)
         return self.cleaned_data

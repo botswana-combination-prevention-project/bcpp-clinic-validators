@@ -142,7 +142,7 @@ class TestClinicSubjectLocator(TestCase):
         clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
         self.assertRaises(ValidationError, clinicsubjectlocator.clean)
 
-    def test_may_follow_up(self):
+    def test_may_follow_up1(self):
         """If participant has not given permission for follow-up, do not give
         follow-up details
         """
@@ -150,3 +150,30 @@ class TestClinicSubjectLocator(TestCase):
                         'may_sms_follow_up': None}
         clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
         self.assertTrue(clinicsubjectlocator.clean())
+
+    def test_may_follow_up2(self):
+        """If participant has not given permission for follow-up, do not give
+        follow-up details
+        """
+        cleaned_data = {'may_follow_up': NO,
+                        'may_sms_follow_up': 123456}
+        clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, clinicsubjectlocator.clean)
+
+    def test_next_of_kin1(self):
+        """If participant has not given permission to contact next_of_kin,
+        do not give next_of_kin details
+        """
+        cleaned_data = {'next_of_kin': NO,
+                        'has_alt_contact': None}
+        clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
+        self.assertTrue(clinicsubjectlocator.clean())
+
+    def test_next_of_kin2(self):
+        """If participant has not given permission to contact next_of_kin,
+        do not give next_of_kin details
+        """
+        cleaned_data = {'next_of_kin': NO,
+                        'has_alt_contact': 123456}
+        clinicsubjectlocator = ClinicSubjectLocator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, clinicsubjectlocator.clean)
