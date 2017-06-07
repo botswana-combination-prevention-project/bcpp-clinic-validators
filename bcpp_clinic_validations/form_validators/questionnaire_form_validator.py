@@ -1,5 +1,5 @@
 from edc_base.modelform_validators import FormValidator
-from edc_constants.constants import YES, NO, UNKNOWN
+from edc_constants.constants import YES
 
 
 class QuestionnaireFormValidator(FormValidator):
