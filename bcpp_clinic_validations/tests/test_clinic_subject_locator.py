@@ -8,9 +8,6 @@ from ..validations import ClinicSubjectLocator
 
 class TestClinicSubjectLocator(TestCase):
 
-    def setUp(self):
-        pass
-
     def test_home_visit_permission_yes(self):
         cleaned_data = {'home_visit_permission': YES}
         form_validator = ClinicSubjectLocator(cleaned_data=cleaned_data)
