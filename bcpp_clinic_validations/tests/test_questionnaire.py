@@ -22,6 +22,6 @@ class TestQuestionnaireFormValidator(TestCase):
     def test_knows_last_cd4_true(self):
         cleaned_data = {
             'knows_last_cd4': YES,
-            'cd4_count': 500}
+            'cd4_count': None}
         form_validator = QuestionnaireFormValidator(cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+        self.assertRaises(ValidationError, form_validator.clean)

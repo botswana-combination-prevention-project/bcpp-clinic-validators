@@ -38,7 +38,7 @@ class TestViralLoadTrackingFormValidator(TestCase):
     def test_is_drawn_datetime_true(self):
         cleaned_data = {
             'is_drawn': YES,
-            'clinician_initials': "XX",
-            'drawn_datetime': get_utcnow()}
+            'clinician_initials': None,
+            'drawn_datetime': None}
         form_validator = ViralLoadTrackingFormValidator(cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+        self.assertRaises(ValidationError, form_validator.clean)

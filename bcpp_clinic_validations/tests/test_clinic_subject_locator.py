@@ -25,9 +25,9 @@ class TestClinicSubjectLocatorFormValidator(TestCase):
     def test_home_visit_permission_true(self):
         cleaned_data = {
             'home_visit_permission': YES,
-            'physical_address': "Village"}
+            'physical_address': None}
         form_validator = ClinicSubjectLocatorFormValidator(cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+        self.assertRaises(ValidationError, form_validator.clean)
 
     def test_may_call_work_place_yes(self):
         cleaned_data = {'may_call_work': YES}
@@ -58,10 +58,10 @@ class TestClinicSubjectLocatorFormValidator(TestCase):
     def test_may_call_work_place_and_phone_true(self):
         cleaned_data = {
             'may_call_work': YES,
-            'subject_work_place': "bhp",
-            'subject_work_phone': 123456}
+            'subject_work_place': None,
+            'subject_work_phone': None}
         form_validator = ClinicSubjectLocatorFormValidator(cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+        self.assertRaises(ValidationError, form_validator.clean)
 
     def test_may_follow_up_yes(self):
         cleaned_data = {'may_follow_up': YES}
@@ -79,9 +79,9 @@ class TestClinicSubjectLocatorFormValidator(TestCase):
     def test_may_follow_up_no_true(self):
         cleaned_data = {
             'may_follow_up': YES,
-            'subject_cell': 123456}
+            'subject_cell': None}
         form_validator = ClinicSubjectLocatorFormValidator(cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+        self.assertRaises(ValidationError, form_validator.clean)
 
     def test_has_alt_contact_name_yes(self):
         cleaned_data = {'has_alt_contact': YES}
@@ -112,10 +112,11 @@ class TestClinicSubjectLocatorFormValidator(TestCase):
     def test_has_alt_contact_name_true(self):
         cleaned_data = {
             'has_alt_contact': YES,
-            'alt_contact_name': "Kwasi",
-            'alt_contact_rel': "brother"}
-        form_validator = ClinicSubjectLocatorFormValidator(cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+            'alt_contact_name': None,
+            'alt_contact_rel': None}
+        form_validator = ClinicSubjectLocatorFormValidator(
+            cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
 
     def test_may_contact_someone_yes(self):
         cleaned_data = {'may_contact_someone': YES}
@@ -159,11 +160,12 @@ class TestClinicSubjectLocatorFormValidator(TestCase):
     def test_may_contact_someone_true(self):
         cleaned_data = {
             'may_contact_someone': YES,
-            'contact_name': "AB",
-            'contact_rel': "brother",
-            'contact_physical_address': "Village"}
-        form_validator = ClinicSubjectLocatorFormValidator(cleaned_data=cleaned_data)
-        self.assertTrue(form_validator.clean())
+            'contact_name': None,
+            'contact_rel': None,
+            'contact_physical_address': None}
+        form_validator = ClinicSubjectLocatorFormValidator(
+            cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
 
     def test_may_sms_follow_up_not_required(self):
         cleaned_data = {
