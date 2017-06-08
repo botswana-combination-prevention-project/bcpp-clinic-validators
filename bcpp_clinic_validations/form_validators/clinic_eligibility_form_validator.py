@@ -4,10 +4,8 @@ from edc_constants.constants import YES
 
 class ClinicEligibilityFormValidator(FormValidator):
 
-    def __init__(self, cleaned_data=None):
-        self.cleaned_data = cleaned_data
-
     def clean(self):
+
         self.required_if(
             YES,
             field='has_identity',
