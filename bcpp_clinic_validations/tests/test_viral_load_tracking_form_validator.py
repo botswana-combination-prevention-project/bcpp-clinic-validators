@@ -5,7 +5,6 @@ from edc_base.utils import get_utcnow
 from edc_constants.constants import YES, NO
 
 from ..form_validators import ViralLoadTrackingFormValidator
-from pprint import pprint
 
 
 class TestViralLoadTrackingFormValidator(TestCase):
