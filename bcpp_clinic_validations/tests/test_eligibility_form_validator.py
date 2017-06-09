@@ -2,29 +2,27 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from edc_constants.constants import YES
+from edc_constants.constants import YES, NO
 
 from ..form_validators import EligibilityFormValidator
 
 
 class TestClinicEligibilityFormValidator(TestCase):
 
-    def setUp(self):
-        pass
-
-    def test_clinic_eligibility_has_identity(self):
-        """Test if has_identity is Yes identity is required.
-        """
-        cleaned_data = {'has_identity': YES, 'identity': 2222212}
-        form = EligibilityFormValidator(cleaned_data=cleaned_data)
-        try:
-            form.clean()
-        except forms.ValidationError as e:
-            self.fail(f'ValidationError unexpectedly raised. Got {e}')
-
-    def test_clinic_eligibility_has_no_identity(self):
-        """Test if has_identity is Yes identity is required.
-        """
+    def test_has_identity_yes1(self):
         cleaned_data = {'has_identity': YES, 'identity': None}
-        form = EligibilityFormValidator(cleaned_data=cleaned_data)
-        self.assertRaises(ValidationError, form.clean)
+        form_validator = EligibilityFormValidator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
+        self.assertIsNotNone(form_validator._errors.get('identity'))
+
+    def test_has_identity_yes2(self):
+        cleaned_data = {'has_identity': YES, 'identity': 21222221222}
+        form_validator = EligibilityFormValidator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
+        self.assertIsNone(form_validator._errors.get('identity'))
+
+    def test_has_identity_no(self):
+        cleaned_data = {'has_identity': NO, 'has_identity': 21222221222}
+        form_validator = EligibilityFormValidator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
+        self.assertIsNotNone(form_validator._errors.get('identity'))
