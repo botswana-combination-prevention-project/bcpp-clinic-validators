@@ -26,3 +26,23 @@ class TestClinicEligibilityFormValidator(TestCase):
         form_validator = EligibilityFormValidator(cleaned_data=cleaned_data)
         self.assertRaises(ValidationError, form_validator.clean)
         self.assertIsNotNone(form_validator._errors.get('identity'))
+
+    def test_first_name_yes1(self):
+        cleaned_data = {'clinic_household_member': NO, 'first_name': None}
+        form_validator = EligibilityFormValidator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
+        self.assertIsNotNone(form_validator._errors.get('first_name'))
+
+    def test_first_name_yes2(self):
+        cleaned_data = {'clinic_household_member': YES,
+                        'first_name': 'Allan'}
+        form_validator = EligibilityFormValidator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
+        self.assertIsNone(form_validator._errors.get('first_name'))
+
+    def test_first_name_no(self):
+        cleaned_data = {'clinic_household_member': NO,
+                        'first_name': 'Allan'}
+        form_validator = EligibilityFormValidator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
+        self.assertIsNotNone(form_validator._errors.get('first_name'))
