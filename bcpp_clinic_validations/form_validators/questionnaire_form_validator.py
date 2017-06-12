@@ -5,9 +5,10 @@ from edc_constants.constants import YES
 class QuestionnaireFormValidator(FormValidator):
 
     def clean(self):
+
         self.required_if(
             YES,
             field='knows_last_cd4',
             field_required='cd4_count')
 
-        return self.cleaned_data
+#        return self.cleaned_data

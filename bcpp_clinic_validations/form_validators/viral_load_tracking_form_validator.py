@@ -14,4 +14,4 @@ class ViralLoadTrackingFormValidator(FormValidator):
             YES,
             field='is_drawn',
             field_required='drawn_datetime')
-        return self.cleaned_data
+#        return self.cleaned_data

@@ -1,5 +1,5 @@
 from edc_base.modelform_validators import FormValidator
-from edc_constants.constants import YES, NO
+from edc_constants.constants import YES
 
 
 class SubjectLocatorFormValidator(FormValidator):
@@ -50,14 +50,4 @@ class SubjectLocatorFormValidator(FormValidator):
             field='may_contact_someone',
             field_required='contact_physical_address',
         )
-        self.not_required_if(
-            NO,
-            field='may_follow_up',
-            field_required='may_sms_follow_up',
-        )
-        self.not_required_if(
-            NO,
-            field='next_of_kin',
-            field_required='has_alt_contact',
-        )
-        return self.cleaned_data
+  #      return self.cleaned_data
