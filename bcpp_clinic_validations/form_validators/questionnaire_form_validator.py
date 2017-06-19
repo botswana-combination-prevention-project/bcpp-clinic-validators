@@ -1,5 +1,5 @@
 from edc_base.modelform_validators import FormValidator
-from edc_constants.constants import YES, DWTA
+from edc_constants.constants import YES, DWTA, NEG
 
 
 class QuestionnaireFormValidator(FormValidator):
@@ -27,4 +27,8 @@ class QuestionnaireFormValidator(FormValidator):
             field='knows_last_cd4',
             field_required='cd4_count')
 
+        self.not_applicable_if(
+            NEG,
+            field='current_hiv_status',
+            field_applicable='arv_evidence')
 #        return self.cleaned_data

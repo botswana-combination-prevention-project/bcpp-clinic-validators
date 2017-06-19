@@ -1,9 +1,10 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase, tag
 
-from edc_constants.constants import YES, NO, DWTA
+from edc_constants.constants import YES, NO, DWTA, NEG
 
 from ..form_validators import QuestionnaireFormValidator
+from bcpp_clinic_validations import form_validators
 
 
 class TestQuestionnaireFormValidator(TestCase):
@@ -45,3 +46,10 @@ class TestQuestionnaireFormValidator(TestCase):
         form_validator = QuestionnaireFormValidator(cleaned_data=cleaned_data)
         self.assertRaises(ValidationError, form_validator.clean)
         self.assertIsNotNone(form_validator._errors.get('cd4_count'))
+
+    def test_current_hiv_status_neg(self):
+        cleaned_data = {'current_hiv_status': NEG,
+                        'arv_evidence': None}
+        form_validator = QuestionnaireFormValidator(cleaned_data=cleaned_data)
+        self.assertRaises(ValidationError, form_validator.clean)
+        self.assertIsNotNone(form_validator._errors.get('arv_evidence'))
