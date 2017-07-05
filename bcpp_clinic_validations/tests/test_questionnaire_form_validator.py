@@ -8,7 +8,6 @@ from bcpp_clinic_validations import form_validators
 
 
 class TestQuestionnaireFormValidator(TestCase):
-
     def test_know_hiv_status_yes(self):
         cleaned_data = {'know_hiv_status': YES,
                         'current_hiv_status': None}
@@ -18,6 +17,13 @@ class TestQuestionnaireFormValidator(TestCase):
 
     def test_know_hiv_status_dwta(self):
         cleaned_data = {'know_hiv_status': DWTA,
+                        'current_hiv_status': 'NEGATIVE'}
+        form_validator = QuestionnaireFormValidator(cleaned_data=cleaned_data)
+        self.assertIsNone(form_validator._errors.get('current_hiv_status'))
+        self.assertRaises(ValidationError, form_validator.clean)
+
+    def test_know_hiv_status_no(self):
+        cleaned_data = {'know_hiv_status': NO,
                         'current_hiv_status': 'NEGATIVE'}
         form_validator = QuestionnaireFormValidator(cleaned_data=cleaned_data)
         self.assertIsNone(form_validator._errors.get('current_hiv_status'))
