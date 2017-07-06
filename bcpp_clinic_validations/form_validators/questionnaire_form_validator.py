@@ -16,7 +16,7 @@ class QuestionnaireFormValidator(FormValidator):
             field='know_hiv_status',
             field_required='current_hiv_status')
 
-        self.not_required_if(
+        self.not_applicable_if(
             UNKNOWN,
             field='know_hiv_status',
             field_required='current_hiv_status')
