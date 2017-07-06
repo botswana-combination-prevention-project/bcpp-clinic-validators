@@ -1,5 +1,5 @@
 from edc_base.modelform_validators import FormValidator
-from edc_constants.constants import YES, DWTA, NEG
+from edc_constants.constants import YES, DWTA, NEG, UNKNOWN
 
 
 class QuestionnaireFormValidator(FormValidator):
@@ -14,8 +14,12 @@ class QuestionnaireFormValidator(FormValidator):
         self.not_required_if(
             DWTA,
             field='know_hiv_status',
-            field_required='current_hiv_status'
-        )
+            field_required='current_hiv_status')
+
+        self.not_required_if(
+            UNKNOWN,
+            field='know_hiv_status',
+            field_required='current_hiv_status')
 
         self.required_if(
             YES,
