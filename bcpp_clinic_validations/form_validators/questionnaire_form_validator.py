@@ -1,5 +1,5 @@
 from django import forms
-from edc_constants.constants import YES, DWTA, NEG, NO, POS
+from edc_constants.constants import YES, DWTA, NEG, NO, POS, UNKNOWN
 
 from edc_base.modelform_validators import FormValidator
 
@@ -15,23 +15,16 @@ class QuestionnaireFormValidator(FormValidator):
     def validate_hiv_status(self):
         cleaned_data = self.cleaned_data
         if cleaned_data.get('know_hiv_status') == NO:
-            if cleaned_data.get('current_hiv_status') in [POS, NEG]:
-                raise forms.ValidationError(
-                    'PPT does not know HIV Status Expecting Unknown')
-
-            if cleaned_data.get('on_arv') in [DWTA, NO, YES]:
-                raise forms.ValidationError(
-                    'PPT cannot take ARV while HIV status is Unknown')
+            raise forms.ValidationError(
+                {'know_hiv_status': 'Please Check Eligibility Checklist for HIV Results.'}
+            )
 
         elif cleaned_data.get('know_hiv_status') == YES:
-            if cleaned_data.get('current_hiv_status') not in [POS, NEG]:
+            if (cleaned_data.get('current_hiv_status')) not in [POS]:
                 raise forms.ValidationError(
-                    'PPT has to specify the HIV result since known status is YES')
-
-            if (cleaned_data.get('current_hiv_status') == NEG and
-                    cleaned_data.get('on_arv') == YES):
-                raise forms.ValidationError(
-                    'PPT cannot be on ART while HIV NEGATIVE')
+                    {'current_hiv_status': 'PPT is not Eligible if not '
+                     'HIV Positive, Please Check eligibiliy Checklist'}
+                )
 
         return cleaned_data
 
