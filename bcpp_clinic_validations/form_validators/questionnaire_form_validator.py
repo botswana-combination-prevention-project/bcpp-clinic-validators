@@ -1,7 +1,7 @@
 from django import forms
-from edc_constants.constants import YES, DWTA, NEG, NO, POS, UNKNOWN
 
 from edc_base.modelform_validators import FormValidator
+from edc_constants.constants import YES, DWTA, NEG, NO, POS, UNKNOWN
 
 
 class QuestionnaireFormValidator(FormValidator):
@@ -42,11 +42,6 @@ class QuestionnaireFormValidator(FormValidator):
 
         self.required_if(
             YES,
-            field='knows_last_cd4',
-            field_required='cd4_count')
-
-        self.not_required_if(
-            NO,
             field='knows_last_cd4',
             field_required='cd4_count')
 
