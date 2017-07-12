@@ -1,7 +1,7 @@
 from django import forms
 
 from edc_base.modelform_validators import FormValidator
-from edc_constants.constants import YES, DWTA, NEG, NO, POS, UNKNOWN
+from edc_constants.constants import YES, DWTA, NO, POS
 
 
 class QuestionnaireFormValidator(FormValidator):
@@ -16,7 +16,8 @@ class QuestionnaireFormValidator(FormValidator):
         cleaned_data = self.cleaned_data
         if cleaned_data.get('know_hiv_status') == NO:
             raise forms.ValidationError(
-                {'know_hiv_status': 'Please Check Eligibility Checklist for HIV Results.'}
+                {'know_hiv_status':
+                    'Please Check Eligibility Checklist for HIV Results.'}
             )
 
         elif cleaned_data.get('know_hiv_status') == YES:
