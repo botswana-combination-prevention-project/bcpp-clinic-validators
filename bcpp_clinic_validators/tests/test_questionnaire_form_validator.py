@@ -1,7 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase, tag
 
-from bcpp_clinic_validations import form_validators
 from edc_constants.constants import YES, NO, DWTA, NEG
 
 from ..form_validators import QuestionnaireFormValidator
