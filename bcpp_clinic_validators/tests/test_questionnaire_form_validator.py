@@ -4,10 +4,9 @@ from django.test import TestCase, tag
 from edc_constants.constants import YES, NO, DWTA, NEG
 
 from ..form_validators import QuestionnaireFormValidator
-from bcpp_clinic_validations import form_validators
 
 
-class TestQuestionnaireFormValidator(TestCase):
+class TestFormValidator(TestCase):
 
     def test_know_hiv_status_yes(self):
         cleaned_data = {'know_hiv_status': YES,

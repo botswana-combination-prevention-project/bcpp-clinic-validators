@@ -6,7 +6,7 @@ from edc_constants.constants import YES, NO
 from ..form_validators import SubjectLocatorFormValidator
 
 
-class TestSubjectLocatorFormValidator(TestCase):
+class TestFormValidator(TestCase):
 
     def test_home_visit_permission_yes(self):
         cleaned_data = {

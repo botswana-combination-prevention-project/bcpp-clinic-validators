@@ -7,7 +7,7 @@ from edc_constants.constants import YES, NO
 from ..form_validators import ViralLoadTrackingFormValidator
 
 
-class TestViralLoadTrackingFormValidator(TestCase):
+class TestFormValidator(TestCase):
 
     def test_if_drawn_datetime_required(self):
         cleaned_data = {

@@ -17,11 +17,11 @@ install:
 - pip install coveralls
 
 before_script:
-- flake8 bcpp_clinic_validations
+- flake8 bcpp_clinic_validators
 - mysql -e 'create database edc character set utf8;'
 
 script:
-- coverage run --source=bcpp_clinic_validations manage.py test
+- coverage run --source=bcpp_clinic_validators manage.py test
 
 after_success:
 - coveralls
