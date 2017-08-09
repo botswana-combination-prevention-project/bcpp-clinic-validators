@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'edc_device.apps.AppConfig',
     'bcpp_clinic_validators.apps.AppConfig',
 ]
 

@@ -1,4 +1,5 @@
 from .questionnaire import QuestionnaireFormValidator
+from .subject_consent import SubjectConsentFormValidator
 from .subject_eligibility import SubjectEligibilityFormValidator
 from .subject_locator import SubjectLocatorFormValidator
 from .subject_visit import SubjectVisitFormValidator
