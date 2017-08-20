@@ -1,2 +1,2 @@
 include AUTHORS CHANGES README.md LICENCE
-recursive-include  clinic_form_validation/templates *
+recursive-include  bcpp_clinic_validators/templates *
